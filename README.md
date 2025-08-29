@@ -1,10 +1,7 @@
 
-# easirundemo
-
+# SvgViewer
 
 This project demonstrates a custom webforJ component: **SvgViewer**.
-
-## SvgViewer
 
 `SvgViewer` is a reusable UI component for displaying and interacting with SVG images. It provides:
 
