@@ -1,11 +1,12 @@
 
 # easirundemo
 
-This project demonstrates a custom webforJ component: **EasirunComponent**.
 
-## EasirunComponent
+This project demonstrates a custom webforJ component: **SvgViewer**.
 
-`EasirunComponent` is a reusable UI component for displaying and interacting with SVG images. It provides:
+## SvgViewer
+
+`SvgViewer` is a reusable UI component for displaying and interacting with SVG images. It provides:
 
 - Zoom in/out controls
 - Drag-to-pan functionality
@@ -15,21 +16,21 @@ This project demonstrates a custom webforJ component: **EasirunComponent**.
 ### Usage Example
 
 ````java
-EasirunComponent svgComponent = new EasirunComponent();
-svgComponent.setSvgContent(Assets.contentOf("/img/lifecycle-listeners.svg"));
-svgComponent.setSvgIdClickListener(id -> {
+SvgViewer svgViewer = new SvgViewer();
+svgViewer.setContent(Assets.contentOf("/img/lifecycle-listeners.svg"));
+svgViewer.onClick(id -> {
 	System.out.println("SVG element clicked: " + id);
 });
-parentLayout.add(svgComponent);
+parentLayout.add(svgViewer);
 ````
 
 ### Features
 
 - **Zoom**: Use the + and - buttons to zoom the SVG in and out. Zoom step and limits are configurable.
 - **Pan**: Click and drag the SVG area to pan.
-- **SVG Element Click**: Listen for clicks on SVG elements by id using `setSvgIdClickListener`.
-- **Styling**: All styles are in `easirun-component.css` and can be customized.
-- **JS Integration**: Drag-to-pan and SVG click detection are handled via `easirun-component.js`.
+- **SVG Element Click**: Listen for clicks on SVG elements by id using `onClick`.
+- **Styling**: All styles are in `svgviewer.css` and can be customized.
+- **JS Integration**: Drag-to-pan and SVG click detection are handled via `svgviewer.js`.
 
 ### Integration
 
