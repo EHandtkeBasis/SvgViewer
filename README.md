@@ -1,11 +1,50 @@
+
 # easirundemo
 
-A minimal and ready-to-use starting point for building webforJ applications. This archetype includes the essential setup to help you launch your project quickly and focus on your app logic.
+This project demonstrates a custom webforJ component: **EasirunComponent**.
+
+## EasirunComponent
+
+`EasirunComponent` is a reusable UI component for displaying and interacting with SVG images. It provides:
+
+- Zoom in/out controls
+- Drag-to-pan functionality
+- Clickable SVG elements (with callback for element id)
+- Customizable styling via CSS
+
+### Usage Example
+
+````java
+EasirunComponent svgComponent = new EasirunComponent();
+svgComponent.setSvgContent(Assets.contentOf("/img/lifecycle-listeners.svg"));
+svgComponent.setSvgIdClickListener(id -> {
+	System.out.println("SVG element clicked: " + id);
+});
+parentLayout.add(svgComponent);
+````
+
+### Features
+
+- **Zoom**: Use the + and - buttons to zoom the SVG in and out. Zoom step and limits are configurable.
+- **Pan**: Click and drag the SVG area to pan.
+- **SVG Element Click**: Listen for clicks on SVG elements by id using `setSvgIdClickListener`.
+- **Styling**: All styles are in `easirun-component.css` and can be customized.
+- **JS Integration**: Drag-to-pan and SVG click detection are handled via `easirun-component.js`.
+
+### Integration
+
+1. Place your SVG file in the static resources folder (e.g., `src/main/resources/static/img/`).
+2. Add the component to your view as shown above.
+3. Optionally, register a click listener for SVG element ids.
+
+---
+
 
 ## Prerequisites
 
-- Java 21 or newer  
+- Java 21 or newer
 - Maven 3.9+
+
 
 ## Getting Started
 
@@ -18,6 +57,7 @@ mvn jetty:run
 Then open [http://localhost:8080](http://localhost:8080) in your browser.
 
 This project is preconfigured to use the **Jetty Maven Plugin**, which makes development faster. It includes automatic scanning for class and resource changes.
+
 
 ### Jetty Auto-Reload (Hot Deployment)
 
@@ -35,6 +75,7 @@ If you're using a live reload tool (like JRebel or similar), you may want to set
 <jetty.scan>0</jetty.scan>
 ```
 
+
 ## Running Integration Tests
 
 To run end-to-end and integration tests:
@@ -49,6 +90,7 @@ This command:
 - Shuts down Jetty after tests complete
 
 
+
 ## Building for Production
 
 To create a WAR file for deployment:
@@ -58,6 +100,7 @@ mvn clean package -Pprod
 ```
 
 The WAR file will be created in `target/easirundemo-1.0-SNAPSHOT.war`
+
 
 ## Learn More
 
