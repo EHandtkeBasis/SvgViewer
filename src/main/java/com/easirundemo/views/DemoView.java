@@ -1,7 +1,7 @@
 package com.easirundemo.views;
 
-import com.easirundemo.components.EasirunComponent;
-import com.webforj.App;
+import com.easirundemo.components.SvgViewer;
+import com.webforj.component.optiondialog.OptionDialog;
 import com.webforj.component.Composite;
 import com.webforj.component.layout.flexlayout.FlexLayout;
 import com.webforj.router.annotation.Route;
@@ -19,11 +19,11 @@ public class DemoView extends Composite<FlexLayout> {
   self.setStyle("justify-content", "center");
   self.setStyle("flex-direction", "column");
 
-  EasirunComponent svgComponent = new EasirunComponent();
-  svgComponent.setSvgContent(Assets.contentOf("/img/lifecycle-listeners.svg"));
-  svgComponent.setSvgIdClickListener(id -> {
-    App.console().log("SVG element clicked: " + id);
+  SvgViewer svgViewer = new SvgViewer();
+  svgViewer.setContent(Assets.contentOf("/img/lifecycle-listeners.svg"));
+  svgViewer.onClick(id -> {
+    OptionDialog.showMessageDialog("SVG element clicked: " + id, "SVG Click");
   });
-  self.add(svgComponent);
+  self.add(svgViewer);
   }
 }

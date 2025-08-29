@@ -1,12 +1,17 @@
 
-function enableSvgPan(svgContainerId) {
-  var el = document.getElementById(svgContainerId);
+
+function enableSvgPan() {
+  var el = document.getElementsByClassName('svg-inner')[0];
   if (!el) return;
   var isDown = false, startX, startY, scrollLeft, scrollTop;
-  el.style.cursor = 'grab';
+  var holdTimer = null;
   el.addEventListener('mousedown', function(e) {
     isDown = true;
-    el.style.cursor = 'grabbing';
+    holdTimer = setTimeout(function() {
+      if (isDown) {
+        el.style.cursor = 'grabbing';
+      }
+    }, 300);
     startX = e.pageX - el.offsetLeft;
     startY = e.pageY - el.offsetTop;
     scrollLeft = el.parentElement.scrollLeft;
@@ -14,14 +19,16 @@ function enableSvgPan(svgContainerId) {
   });
   el.addEventListener('mouseleave', function() {
     isDown = false;
-    el.style.cursor = 'grab';
+    clearTimeout(holdTimer);
+    el.style.cursor = 'auto';
   });
   el.addEventListener('mouseup', function() {
     isDown = false;
-    el.style.cursor = 'grab';
+    clearTimeout(holdTimer);
+    el.style.cursor = 'auto';
   });
   el.addEventListener('mousemove', function(e) {
-    if (!isDown) return;
+    if (!isDown || el.style.cursor !== 'grabbing') return;
     e.preventDefault();
     var x = e.pageX - el.offsetLeft;
     var y = e.pageY - el.offsetTop;
@@ -29,3 +36,4 @@ function enableSvgPan(svgContainerId) {
     el.parentElement.scrollTop = scrollTop - (y - startY);
   });
 }
+enableSvgPan();
